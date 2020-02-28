@@ -23,9 +23,10 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('phpcr_migrations')
-            ->children()
+        $treeBuilder = new TreeBuilder('phpcr_migrations');
+        $rootNode    = $treeBuilder->getRootNode();
+
+        $rootNode->children()
                 ->scalarNode('version_node_name')->defaultValue('jcr:versions')->end()
                 ->arrayNode('paths')
                     ->prototype('scalar')->end()
